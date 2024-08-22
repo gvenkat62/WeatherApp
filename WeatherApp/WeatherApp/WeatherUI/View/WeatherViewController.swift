@@ -76,7 +76,7 @@ class WeatherViewController: UIViewController {
             
         }
         
-        var item = UIBarButtonItem(image: UIImage(named: "currentlocation.png"), style: .plain, target: self, action: #selector(GetCurrentlocation))
+        let item = UIBarButtonItem(image: UIImage(named: "currentlocation.png"), style: .plain, target: self, action: #selector(GetCurrentlocation))
         self.navigationItem.rightBarButtonItem = item
         
         

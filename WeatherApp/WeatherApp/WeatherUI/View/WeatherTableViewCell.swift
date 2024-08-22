@@ -84,7 +84,7 @@ class UserTableViewCell : UITableViewCell{
         self.titleLable.text = "City : \(user.name) \n\nDate: \(dateFormatter.string(from: dateVar)) \n\nTemparature : \(user.main.temp) Fahrenheit"
         self.descriptionLable.text = "\(user.weather[0].main)/\(user.weather[0].description) \n\nHumidity : \(user.main.humidity) %"
         
-        var imgStr:String? =  WetaherEndpoint.getImageUrl.rawValue+user.weather[0].icon+WetaherEndpoint.getPngExtension.rawValue as String
+        let imgStr:String? =  WetaherEndpoint.getImageUrl.rawValue+user.weather[0].icon+WetaherEndpoint.getPngExtension.rawValue as String
         guard  let imageUrl = imgStr else{
             return
         }
