@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "57D1BCF0-DCBF-4A87-AE96-7B3B129C6208"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD06DA7A-C8C0-4A40-A089-5676FA257FC8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/WeatherService/WeatherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getCurrentWeatherDataByCity(address:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AD06DA7A-C8C0-4A40-A089-5676FA257FC8 - 32917d2477b8df8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherApp.WeatherSerice.getCurrentWeatherDataByCity(address: Swift.String) async -&gt; Swift.Result&lt;WeatherApp.WeatherData, WeatherApp.postError&gt;"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/venkat/Documents/SwitUI/SwiftSamples/WeatherApp/WeatherApp/WeatherService/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+               <Location
+                  uuid = "AD06DA7A-C8C0-4A40-A089-5676FA257FC8 - 67b4453b02b5ca0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for WeatherApp.WeatherSerice.getCurrentWeatherDataByCity(address: Swift.String) async -&gt; Swift.Result&lt;WeatherApp.WeatherData, WeatherApp.postError&gt;"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/venkat/Documents/SwitUI/SwiftSamples/WeatherApp/WeatherApp/WeatherService/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90988122-7FA8-4652-B469-7D594C3705BE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/WeatherUI/View/WeatherViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
