@@ -29,8 +29,8 @@ class WeatherViewController: UIViewController {
            locationManager.distanceFilter = 10.0  // Movement threshold for new events
            return locationManager
        }()
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+    var latitude: Double = 32.92356599447725
+    var longitude: Double = -96.38737971865447
 
     var tableview:UITableView = {
         let table = UITableView()

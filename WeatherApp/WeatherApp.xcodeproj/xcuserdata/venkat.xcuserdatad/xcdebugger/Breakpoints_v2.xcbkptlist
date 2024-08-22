@@ -47,6 +47,34 @@
                   startingLineNumber = "49"
                   endingLineNumber = "49">
                </Location>
+               <Location
+                  uuid = "AD06DA7A-C8C0-4A40-A089-5676FA257FC8 - 9d2d459af5789426"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherApp.WeatherSerice.getCurrentWeatherDataByCity(address: Swift.String) async -&gt; Swift.Result&lt;WeatherApp.WeatherData, WeatherApp.postError&gt;"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/venkat/Documents/SwitUI/WeatherApp/WeatherApp/WeatherApp/WeatherService/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
+               <Location
+                  uuid = "AD06DA7A-C8C0-4A40-A089-5676FA257FC8 - c8087d85807581a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for WeatherApp.WeatherSerice.getCurrentWeatherDataByCity(address: Swift.String) async -&gt; Swift.Result&lt;WeatherApp.WeatherData, WeatherApp.postError&gt;"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/venkat/Documents/SwitUI/WeatherApp/WeatherApp/WeatherApp/WeatherService/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
