@@ -8,89 +8,119 @@
 import Foundation
 import UIKit
 
-class UserTableViewCell : UITableViewCell{
-    
-    var titleLable:UILabel  = {
-        let lable  = UILabel()
-        lable.font = .boldSystemFont(ofSize: 14)
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        lable.textAlignment = .left
-        lable.numberOfLines = 0
-        //lable.backgroundColor = .blue
-        return lable
-    }()
-    
-    var descriptionLable:UILabel  = {
-        let lable  = UILabel()
-        lable.font = .boldSystemFont(ofSize: 14)
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        lable.textAlignment = .left
-        lable.numberOfLines = 0
-        
-        //lable.backgroundColor = .red
-        
-        return lable
-    }()
-    
-    var avatarImageView:UIImageView = {
-        let imgView  = UIImageView()
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        //imgView.backgroundColor = .yellow
-        imgView.layer.borderWidth = 0.5
-        imgView.layer.borderColor = UIColor.gray.cgColor
-        imgView.contentMode = .scaleToFill
-        imgView.isHidden = true
+class UserTableViewCell: UITableViewCell {
 
-        return imgView
+    let titleLable: UILabel = {
+        let l = UILabel()
+        l.textColor = .white
+        l.font = UIFont.preferredFont(forTextStyle: .title3)
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
     }()
     
+    let dateLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .white
+
+        return l
+    }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let temperatureLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .white
+
+        return l
+    }()
+    
+    let humidLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textAlignment = .left
+        l.textColor = .white
+
+        return l
+    }()
+    
+    let weatherIcon: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
+    lazy var leftStackView: UIStackView = {
+        let s = UIStackView(arrangedSubviews: [titleLable, dateLabel, temperatureLabel,humidLabel])
+        s.axis = .vertical
+        s.translatesAutoresizingMaskIntoConstraints = false
+        return s
+    }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    fileprivate func setupViews() {
         
-        contentView.addSubview(titleLable)
-        contentView.addSubview(descriptionLable)
-        contentView.addSubview(avatarImageView)
-        
+        contentView.addSubview(leftStackView)
+        contentView.addSubview(weatherIcon)
+
+        contentView.backgroundColor = .systemBlue
         NSLayoutConstraint.activate([
             
-            titleLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLable.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            titleLable.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10),
+            weatherIcon.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            weatherIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+
             
-            descriptionLable.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 10),
-            descriptionLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            descriptionLable.leadingAnchor.constraint(equalTo: titleLable.leadingAnchor),
-            descriptionLable.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            leftStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            leftStackView.topAnchor.constraint(equalTo: weatherIcon.bottomAnchor, constant: 10),
+            leftStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
+            leftStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            leftStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+         
+            weatherIcon.widthAnchor.constraint(equalToConstant: 150),
+            weatherIcon.heightAnchor.constraint(equalToConstant: 150),
             
-            avatarImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            titleLable.heightAnchor.constraint(equalToConstant: 50),
+            dateLabel.heightAnchor.constraint(equalToConstant: 50),
+            temperatureLabel.heightAnchor.constraint(equalToConstant: 50),
+            humidLabel.heightAnchor.constraint(equalToConstant: 50),
+
         ])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func bindData(user:WeatherData)
     {
-        let dateVar = Date.init(timeIntervalSinceNow: TimeInterval(user.dt)/1000)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
-        print(dateFormatter.string(from: dateVar))
-        
-        self.titleLable.text = "City : \(user.name) \n\nDate: \(dateFormatter.string(from: dateVar)) \n\nTemparature : \(user.main.temp) Fahrenheit"
-        self.descriptionLable.text = "\(user.weather[0].main)/\(user.weather[0].description) \n\nHumidity : \(user.main.humidity) %"
-        
+        let dateTime = self.getDateTime(user: user)
+        self.titleLable.text = "City : \(user.name)"
+        self.dateLabel.text = "Date: \(dateTime)"
+        self.temperatureLabel.text = "Temparature : \(user.main.temp) Fahrenheit"
+        self.humidLabel.text = "Humidity : \(user.main.humidity) %"
+
         let imgStr:String? =  WetaherEndpoint.getImageUrl.rawValue+user.weather[0].icon+WetaherEndpoint.getPngExtension.rawValue as String
         guard  let imageUrl = imgStr else{
             return
         }
-        self.avatarImageView.isHidden = false
-        self.avatarImageView.load(url: URL(string: imageUrl)!)
-        self.avatarImageView.contentMode = .scaleAspectFill
+        self.weatherIcon.isHidden = false
+        self.weatherIcon.load(url: URL(string: imageUrl)!)
+        self.weatherIcon.contentMode = .scaleAspectFit
         
     }
+    func getDateTime(user:WeatherData)->String{
+        
+        let dateVar = Date.init(timeIntervalSince1970: TimeInterval(user.dt))
+        let dateFormatter = DateFormatter()
+        let timeZone = TimeZone(secondsFromGMT: user.timezone)
+        dateFormatter.timeZone = timeZone
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
+        return dateFormatter.string(from: dateVar)
+    }
+    
 }

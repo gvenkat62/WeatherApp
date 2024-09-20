@@ -19,7 +19,7 @@ enum postError:Error{
 class NetWorkService{
     
     static let shared = NetWorkService()
-
+    
     func getApiRequestasync<T:Decodable> (url:URL?, Params:String, type:T.Type) async -> Result<T, postError> {
         
         guard let url = url else{
@@ -34,11 +34,8 @@ class NetWorkService{
         }
         catch {
             return .failure(.parseError)
-
         }
-        
     }
-    
     
     func postApiRequestasync<T:Decodable> (url:String, Params:String, body:AnyObject? = nil, type:T.Type) async -> Result<T, postError> {
         
@@ -53,14 +50,10 @@ class NetWorkService{
         }
         catch {
             return .failure(.parseError)
-
         }
-        
     }
     
     func getImage(url: URL?) async-> Result<UIImage, postError> {
-        
-        
         
         guard let url = url else{
             return .failure(.requestError)
@@ -79,25 +72,25 @@ class NetWorkService{
         }
         catch {
             return .failure(.parseError)
-            
         }
     }
+    
     func storeDataUserDefaults(data:WeatherData){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(data) {
             UserDefaults.standard.set(encoded, forKey: "SavedPerson")
         }
     }
-   func fetchDataFormUserDefaults()->WeatherData?
+    
+    func fetchDataFormUserDefaults()->WeatherData?
     {
         if let savedData = UserDefaults.standard.object(forKey: "SavedPerson") as? Data {
-            let decoder = JSONDecoder() 
+            let decoder = JSONDecoder()
             if let loadedData = try? decoder.decode(WeatherData.self, from: savedData) {
                 return loadedData
             }
         }
         return nil
     }
-    
     
 }

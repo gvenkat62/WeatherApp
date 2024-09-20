@@ -11,9 +11,7 @@ import UIKit
 class ImageCache {
     
     private init() {}
-    
     static let shared = NSCache<NSString, UIImage>()
-      
 }
 
 extension UIImageView {

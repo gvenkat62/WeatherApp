@@ -10,7 +10,7 @@ class WeatherViewModel {
     
     let apiService: WeatherSericeProtocol
     var weatherData: Observable<WeatherData?> = Observable(nil)
-
+    
     init(apiService:WeatherSericeProtocol) {
         self.apiService = apiService
     }
@@ -22,6 +22,7 @@ class WeatherViewModel {
         case .success(let data):
             self.weatherData.value = data
         case .failure(let error):
+            self.weatherData.value = nil
             print(error)
         }
     }
@@ -33,9 +34,8 @@ class WeatherViewModel {
         case .success(let data):
             self.weatherData.value = data
         case .failure(let error):
+            self.weatherData.value = nil
             print(error)
         }
     }
-    
-    
 }
