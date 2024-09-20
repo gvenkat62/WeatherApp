@@ -38,6 +38,7 @@ class WeatherViewController: UIViewController {
         table.register(UserTableViewCell.self, forCellReuseIdentifier: "cell")
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 200
+        table.separatorStyle = .none
         return table
     }()
     override func viewDidLoad() {
@@ -117,24 +118,10 @@ extension WeatherViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserTableViewCell
-        cell.titleLable.text = "No data found"
         if let data = self.viewModel.weatherData.value{
-            cell.contentView.subviews.forEach { view in
-                view.isHidden = false
-            }
-            cell.titleLable.textAlignment = .left
-
             cell.bindData(user: data)
         }else{
-            cell.contentView.subviews.forEach { view in
-                view.isHidden = true
-            }
-            cell.leftStackView.isHidden = false
-            cell.dateLabel.isHidden = true
-            cell.temperatureLabel.isHidden = true
-            cell.humidLabel.isHidden = true
-            cell.titleLable.isHidden = false
-            cell.titleLable.textAlignment = .center
+            cell.noDataBinding()
         }
         return cell
     }

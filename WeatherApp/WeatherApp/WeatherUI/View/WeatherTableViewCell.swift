@@ -13,7 +13,7 @@ class UserTableViewCell: UITableViewCell {
     let titleLable: UILabel = {
         let l = UILabel()
         l.textColor = .white
-        l.font = UIFont.preferredFont(forTextStyle: .title3)
+        l.font = UIFont.preferredFont(forTextStyle: .title2)
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
     }()
@@ -21,25 +21,25 @@ class UserTableViewCell: UITableViewCell {
     let dateLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont.preferredFont(forTextStyle: .title2)
         l.textColor = .white
-
         return l
     }()
     
     let temperatureLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont.preferredFont(forTextStyle: .title2)
         l.textColor = .white
-
         return l
     }()
     
     let humidLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = UIFont.preferredFont(forTextStyle: .title2)
         l.textAlignment = .left
         l.textColor = .white
-
         return l
     }()
     
@@ -83,12 +83,6 @@ class UserTableViewCell: UITableViewCell {
          
             weatherIcon.widthAnchor.constraint(equalToConstant: 150),
             weatherIcon.heightAnchor.constraint(equalToConstant: 150),
-            
-            titleLable.heightAnchor.constraint(equalToConstant: 50),
-            dateLabel.heightAnchor.constraint(equalToConstant: 50),
-            temperatureLabel.heightAnchor.constraint(equalToConstant: 50),
-            humidLabel.heightAnchor.constraint(equalToConstant: 50),
-
         ])
     }
     
@@ -96,8 +90,30 @@ class UserTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func noDataBinding(){
+        self.weatherIcon.isHidden = true
+        self.leftStackView.isHidden = false
+        self.titleLable.isHidden = false
+        self.dateLabel.isHidden = true
+        self.temperatureLabel.isHidden = true
+        self.humidLabel.isHidden = true
+        self.titleLable.textAlignment = .center
+        
+        self.titleLable.text = "No data found"
+    }
+    
+    
     func bindData(user:WeatherData)
     {
+        self.leftStackView.isHidden = false
+        self.dateLabel.isHidden = false
+        self.temperatureLabel.isHidden = false
+        self.humidLabel.isHidden = false
+        self.titleLable.isHidden = false
+        self.weatherIcon.isHidden = false
+
+        self.titleLable.textAlignment = .left
+        
         let dateTime = self.getDateTime(user: user)
         self.titleLable.text = "City : \(user.name)"
         self.dateLabel.text = "Date: \(dateTime)"
